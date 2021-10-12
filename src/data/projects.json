@@ -1,0 +1,98 @@
+[
+  {
+    "title": "Universal basic income Token",
+    "name": "UBI TOKEN",
+    "description": "In the last five to six years the FTA satellite receiver has become an everyday household electronic device. People all over the world are buying free to air receivers because of their growing and always evolving features and capabilities.",
+    "projectLink": "https://example.com",
+    "picture": "../images/ubi-img-lg.png",
+    "colorCode": "#3C876A",
+    "borderColor": "rgba(123, 188, 161, 0.4)",
+    "moreInfoColor": "#7BBCA1",
+    "resources": [
+      {
+        "title": "Introducing UBI: Universal Basic Income for Humans",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Twitter: Universal Basic Income for Humans",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Santiago Siri : Universal Basic Income with Proof of Humanity",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Proof of Humanity - UBI",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Ehterscan - UBI Token",
+        "link": "https://example.com"
+      }
+    ]
+  },
+  {
+    "title": "The Internet Of Humans",
+    "name": "Proof Of Humanity",
+    "description": "In the last five to six years the FTA satellite receiver has become an everyday household electronic device. People all over the world are buying free to air receivers because of their growing and always evolving features and capabilities.",
+    "projectLink": "https://example.com",
+    "picture": "../images/poh-img-lg.png",
+    "colorCode": "#ED6F2C",
+    "borderColor": "rgba(237, 111, 44, 0.4)",
+    "moreInfoColor": "#F6C944",
+    "resources": [
+      {
+        "title": "Proof of Humanity - An Explainer",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Twitter: Proof of humanity",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Santiago Siri : Universal Basic Income with Proof of Humanity",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Proof of Humanity - UBI",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Ehterscan - UBI Token",
+        "link": "https://example.com"
+      }
+    ]
+  },
+  {
+    "title": "Human rights with tech",
+    "name": "Decentralized governance",
+    "description": "In the last five to six years the FTA satellite receiver has become an everyday household electronic device. People all over the world are buying free to air receivers because of their growing and always evolving features and capabilities.",
+    "projectLink": "https://example.com",
+    "picture": "../images/decentralized-gov-img-md.png",
+    "colorCode": "#41085B",
+    "borderColor": "rgba(171, 124, 204, 0.4)",
+    "moreInfoColor": "#F2E8F8",
+    "resources": [
+      {
+        "title": "Proof of Humanity - An Explainer",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Twitter: Proof of humanity",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Santiago Siri : Universal Basic Income with Proof of Humanity",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Proof of Humanity - UBI",
+        "link": "https://example.com"
+      },
+      {
+        "title": "Ehterscan - UBI Token",
+        "link": "https://example.com"
+      }
+    ]
+  }
+]

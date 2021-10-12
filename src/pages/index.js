@@ -1,184 +1,312 @@
-import * as React from "react"
+import {
+  Box,
+  Grid,
+  Image,
+  Flex,
+  VStack,
+  Text,
+  HStack,
+  Button,
+  Link as ChakraLink,
+} from "@chakra-ui/react";
+import * as React from "react";
+import { Link, graphql } from "gatsby";
+import { Helmet } from "react-helmet";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
+import bgGradientSM from "../images/bg-gradient-sm.jpg";
+import bgGradientMD from "../images/bg-gradient-md.jpg";
+import bgGradientLG from "../images/bg-gradient-lg.jpg";
+import LogoIcon from "../images/icon.png";
+import headerBgSM from "../images/header-img-sm.png";
+import headerBgMD from "../images/header-img-md.png";
+import headerBgLG from "../images/header-img-lg.png";
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
-
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
-
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
-
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
-
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
-
-// data
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
+import Fonts from "../components/Font";
+import { isOdd } from "../lib/util";
 
 // markup
-const IndexPage = () => {
-  return (
-    <main style={pageStyles}>
-      <title>Home Page</title>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! </span>
-        <span role="img" aria-label="Party popper emojis">
-          🎉🎉🎉
-        </span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time.{" "}
-        <span role="img" aria-label="Sunglasses smiley emoji">
-          😎
-        </span>
-      </p>
-      <ul style={listStyles}>
-        <li style={docLinkStyle}>
-          <a
-            style={linkStyle}
-            href={`${docLink.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-          >
-            {docLink.text}
-          </a>
-        </li>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-              >
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
-  )
-}
+const IndexPage = ({ data }) => {
+  const { projectsData } = data.allProjectsJson;
 
-export default IndexPage
+  return (
+    <main>
+      <Helmet>
+        <title>Democracy Earth</title>
+      </Helmet>
+      <Fonts />
+      <Flex
+        bg={{
+          base: `url(${bgGradientSM}) no-repeat`,
+          md: `url(${bgGradientMD}) no-repeat`,
+          lg: `url(${bgGradientLG}) no-repeat`,
+        }}
+        bgSize={{ base: "cover", md: "cover", lg: "cover" }}
+        px='16px'
+        py='24px'
+        flexDir='column'
+        alignItems='center'
+      >
+        <Grid
+          rowGap={{ base: "256px", md: "279px" }}
+          bg={{
+            base: `url(${headerBgSM}) no-repeat`,
+            md: `url(${headerBgMD}) no-repeat`,
+            lg: `url(${headerBgLG}) no-repeat`,
+          }}
+          px='23px'
+          pt={{ base: "28px", md: "40px" }}
+          pb={{ base: "56px", md: "73px" }}
+          bgSize={{ base: "cover", md: "cover", lg: "cover" }}
+          borderTopRadius='24px'
+          w={{ lg: "1232px" }}
+        >
+          <Flex justifyContent='space-between'>
+            <Box
+              as={Link}
+              to='/'
+              bg='logoBg'
+              p={{ base: "4px 24px", md: "8px 32px" }}
+              borderRadius='32px'
+            >
+              <HStack spacing='8px'>
+                <Image w='40px' h='40px' src={LogoIcon} alt='Logo' />
+                <Text
+                  textStyle='paragraph-1'
+                  color='buttonBg'
+                  display={{ base: "none", md: "inline-block" }}
+                >
+                  Democracy earth
+                </Text>
+              </HStack>
+            </Box>
+            <Button w={{ md: "170px" }} variant='primary'>
+              Start App
+            </Button>
+          </Flex>
+          <VStack spacing='8px' textAlign='center'>
+            <Text
+              textStyle={{ base: "subHeader" }}
+              color='secondaryText'
+              textShadow='0px 2px 4px rgba(27, 26, 27, 0.8)'
+            >
+              Welcome to
+            </Text>
+            <Text
+              maxW={{ base: "294px", md: "100%" }}
+              textStyle={{ base: "defaultHeader", md: "mainHeader" }}
+              color='primaryText'
+              textShadow='0px 4px 8px rgba(27, 26, 27, 0.8)'
+              textTransform={{ base: "uppercase", md: "capitalize" }}
+            >
+              Democracy Earth
+            </Text>
+            <Text
+              maxW={{ base: "294px", md: "554px" }}
+              textStyle={{
+                base: "subHeader",
+                md: "subHeader-2",
+                lg: "subHeader-3",
+              }}
+              color='secondaryText'
+              textShadow='0px 2px 4px rgba(27, 26, 27, 0.8)'
+              fontWeight='300'
+            >
+              Work together to end poverty with crypto
+            </Text>
+          </VStack>
+        </Grid>
+        <Flex
+          boxShadow='0px 16px 32px rgba(27, 26, 27, 0.1)'
+          flexDir='column'
+          alignItems='center'
+          justifyContent='center'
+          pb='48px'
+          borderBottomRadius='32px'
+        >
+          {projectsData.map(({ project }, index) => {
+            const projectImage = getImage(project.picture);
+            return (
+              <Grid
+                borderTop='8px solid'
+                borderTopColor={project.borderColor}
+                bg='primaryText'
+                p={{ base: "24px 16px" }}
+                justifyItems='center'
+                key={index.toString()}
+                w={{ lg: "1232px" }}
+                placeItems='center'
+              >
+                <Box>
+                  <Flex
+                    flexDir={{
+                      base: "column",
+                      md: isOdd(index) ? "row" : "row-reverse",
+                    }}
+                    mb='32px'
+                    alignItems={{ lg: "flex-end" }}
+                  >
+                    <Box
+                      mb='30px'
+                      width={{ base: "310px", md: "344px", lg: "600px" }}
+                    >
+                      <GatsbyImage image={projectImage} alt={project.title} />
+                    </Box>
+                    <Box ml={{ md: "16px" }}>
+                      <Text
+                        mb='8px'
+                        textStyle={{ base: "paragraph-1", lg: "subHeader" }}
+                        color={project.colorCode}
+                      >
+                        {project.title}
+                      </Text>
+                      <Text
+                        textStyle={{ base: "title" }}
+                        color='tertiaryText'
+                        textTransform='uppercase'
+                        mb='16px'
+                        fontWeight='300'
+                      >
+                        {project.name}
+                      </Text>
+                      <Text
+                        maxW={{ base: "294px", md: "328px", lg: "571px" }}
+                        textStyle={{ base: "subHeader", lg: "paragraph-1" }}
+                        color='tertiaryText'
+                        mb='24px'
+                        fontWeight='300'
+                      >
+                        {project.description}
+                      </Text>
+                      <Button
+                        as={ChakraLink}
+                        href={project.projectLink}
+                        isExternal
+                        variant='primary'
+                        bg={project.colorCode}
+                      >
+                        Visit website
+                      </Button>
+                    </Box>
+                  </Flex>
+                  <Box
+                    bg='card1'
+                    border='1px solid'
+                    borderColor='card1BorderColor'
+                    borderRadius='8px'
+                    p='24px'
+                    w={{ base: "310px", md: "688px", lg: "100%" }}
+                  >
+                    <Text
+                      textStyle='buttonLabel'
+                      color='cardTextTitle'
+                      textTransform='uppercase'
+                      fontWeight='500'
+                      pl='16px'
+                    >
+                      Related with UBI Token
+                    </Text>
+                    <HStack spacing='48px' w='100%' overflow='auto'>
+                      {project.resources.map((resource, resourceIndex) => (
+                        <Box
+                          p='16px'
+                          _hover={{
+                            bg: project.colorCode,
+                            cursor: "pointer",
+                            textDecoration: "none",
+                            borderRadius: "8px",
+                            p: {
+                              color: "#fff",
+                            },
+                            "p:last-of-type": {
+                              color: project.moreInfoColor,
+                            },
+                          }}
+                          as={ChakraLink}
+                          isExternal
+                          href={resource.link}
+                          key={resourceIndex.toString()}
+                        >
+                          <Text
+                            textStyle='paragraph-1'
+                            color={project.colorCode}
+                          >
+                            {resource.title}
+                          </Text>
+                          <Text
+                            className='moreInfo'
+                            textStyle='smallText'
+                            color='cardTextTitle'
+                          >
+                            More info →
+                          </Text>
+                        </Box>
+                      ))}
+                    </HStack>
+                  </Box>
+                </Box>
+              </Grid>
+            );
+          })}
+          <Flex mt='80px' justifyContent='center' alignItems='center'>
+            <Box
+              bg='footerBg'
+              textAlign='center'
+              w={{ base: "294px", md: "512px" }}
+              p='24px'
+              borderRadius='32px'
+            >
+              <Text
+                textStyle='buttonLabel'
+                fontWeight='500'
+                color='cardTextTitle'
+              >
+                Democracy earth
+              </Text>
+              <Text
+                textStyle='buttonLabel'
+                textTransform='uppercase'
+                color='tertiaryText'
+              >
+                END POVERTY WITH CRYPTO
+              </Text>
+              <Text textStyle='smallText' mt='24px' color='copyRightNote'>
+                Copyright © 2021 Open Collective Foundation, a 501(c)(3)
+                nonprofit
+              </Text>
+            </Box>
+          </Flex>
+        </Flex>
+      </Flex>
+    </main>
+  );
+};
+
+export const query = graphql`
+  {
+    allProjectsJson {
+      projectsData: edges {
+        project: node {
+          id
+          title
+          projectLink
+          name
+          resources {
+            link
+            title
+          }
+          borderColor
+          colorCode
+          description
+          picture {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default IndexPage;
