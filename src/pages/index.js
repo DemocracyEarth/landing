@@ -59,7 +59,7 @@ const IndexPage = ({ data }) => {
           pb={{ base: "56px", md: "73px" }}
           bgSize={{ base: "cover", md: "cover", lg: "cover" }}
           borderTopRadius='24px'
-          w={{ lg: "1232px" }}
+          w={{ base: "342px", md: "736px", lg: "1232px" }}
         >
           <Flex justifyContent='space-between'>
             <Box
@@ -134,7 +134,7 @@ const IndexPage = ({ data }) => {
                 p={{ base: "24px 16px" }}
                 justifyItems='center'
                 key={index.toString()}
-                w={{ lg: "1232px" }}
+                w={{ base: "342px", md: "736px", lg: "1232px" }}
                 placeItems='center'
               >
                 <Box>
